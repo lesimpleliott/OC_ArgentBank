@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { color } from "../styles/color";
 
 const Footer = () => {
     return (
@@ -11,7 +12,7 @@ const Footer = () => {
 const FooterStyled = styled.footer`
     display: flex;
     justify-content: center;
-    border-top: 2px solid #ccc;
+    border-top: 2px solid ${color.border};
     padding: 2rem 0 1.5rem;
 
     .footer-text {

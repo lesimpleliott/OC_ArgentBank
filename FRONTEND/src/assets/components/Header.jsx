@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { color } from "../styles/color";
 
 const Header = () => {
     return (
@@ -14,7 +15,7 @@ const Header = () => {
                     <h1 className="sr-only">Argent Bank</h1>
                 </NavLink>
                 <div>
-                    <NavLink to="/signin" className="main-nav-item">
+                    <NavLink to="/login" className="main-nav-item">
                         <i className="fa fa-user-circle"></i>
                         Sign In
                     </NavLink>
@@ -32,10 +33,10 @@ const HeaderStyled = styled.header`
         padding: 5px 20px;
         a {
             font-weight: bold;
-            color: #2c3e50;
+            color: ${color.text};
         }
         a.router-link-exact-active {
-            color: #42b983;
+            color: ${color.main};
         }
     }
 
