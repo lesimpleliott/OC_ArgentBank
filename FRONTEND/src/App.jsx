@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./assets/pages/Home";
 import Login from "./assets/pages/Login";
-import User from "./assets/pages/User";
+import Profil from "./assets/pages/Profil";
 import Header from "./assets/components/Header";
 import Footer from "./assets/components/Footer";
 
@@ -12,7 +12,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/login" element={<Login />}></Route>
-                <Route path="/user" element={<User />}></Route>
+                <Route path="/profil" element={<Profil />}></Route>
             </Routes>
             <Footer />
         </BrowserRouter>
