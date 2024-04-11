@@ -1,8 +1,29 @@
-# React + Vite
+# Project #10 - Argent Bank
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## FrontEnd
 
-Currently, two official plugins are available:
+This codebase contains the code needed to run the frontend for Argent Bank.
+To run the app ArgentBank, clone this repo and
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+## BackEnd
+
+Get the codebase for backend.
+Clone the following repo, then follow the README.md to instal and run the server
+
+```bash
+# using HTTPS
+git clone https://github.com/OpenClassrooms-Student-Center/ArgentBank-website.git
+```
+
+```bash
+# using SSH
+git clone git@github.com:OpenClassrooms-Student-Center/ArgentBank-website.git
+```
