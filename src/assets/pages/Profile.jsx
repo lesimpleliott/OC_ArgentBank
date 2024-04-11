@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { color } from "../styles/color";
 import Account from "../components/Account";
 
-const Profil = () => {
+const Profile = () => {
     return (
-        <ProfilStyle>
+        <ProfileStyle>
             <div className="header">
                 <h1>
                     Welcome back
@@ -17,12 +17,12 @@ const Profil = () => {
             <Account />
 
 
-        </ProfilStyle>
+        </ProfileStyle>
     );
 };
 
 // Styled components
-const ProfilStyle = styled.main`
+const ProfileStyle = styled.main`
     background: ${color.background};
 
     .header {
@@ -39,4 +39,4 @@ const ProfilStyle = styled.main`
     }
 `;
 
-export default Profil;
+export default Profile;
