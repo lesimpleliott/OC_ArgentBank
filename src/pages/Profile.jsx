@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { color } from "../styles/color";
 import Account from "../components/Account";
+import { color } from "../assets/styles/color";
 
 const Profile = () => {
     return (
@@ -15,8 +15,6 @@ const Profile = () => {
             </div>
             <h2 className="sr-only">Accounts</h2>
             <Account />
-
-
         </ProfileStyle>
     );
 };

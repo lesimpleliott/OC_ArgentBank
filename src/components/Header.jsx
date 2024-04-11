@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { color } from "../styles/color";
+import { color } from "../assets/styles/color";
 
 const Header = () => {
     return (
@@ -43,7 +43,7 @@ const HeaderStyled = styled.header`
     .fa-user-circle {
         margin-right: 5px;
     }
-    
+
     .main-nav-item {
         text-decoration: none;
         margin-right: 0.5rem;

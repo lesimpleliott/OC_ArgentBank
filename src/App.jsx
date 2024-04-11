@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./assets/pages/Home";
-import Login from "./assets/pages/Login";
-import Profile from "./assets/pages/Profile";
-import Header from "./assets/components/Header";
-import Footer from "./assets/components/Footer";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App = () => {
     return (
         <BrowserRouter>
-        <Header />
+            <Header />
             <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/login" element={<Login />}></Route>
