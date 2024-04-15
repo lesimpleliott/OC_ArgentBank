@@ -32,28 +32,21 @@ const Login = () => {
       },
     });
     const data = await response.json();
-    return [
-      data.body.email,
-      data.body.firstName,
-      data.body.lastName,
-      data.body.userName,
-    ];
+    return data.body;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Fetch pour recuperer le token
+    // Fetch et dispatch pour le token
     const token = await fetchToken();
-    // Dispatch pour envoyer le token dans le store
     dispatch(setToken(token));
 
-    // Fetch pour recuperer les donnees de l'utilisateur
+    // Fecth et dispatch de la data USER
     const userDatas = await fetchUserDatas(token);
-    // Dispatch pour envoyer les donnees de l'utilisateur dans le store
     dispatch(setUser(userDatas));
 
-    // Redirection vers la page d'accueil
+    // Redirection vers la page profil
     naviguate("/profile");
   };
 

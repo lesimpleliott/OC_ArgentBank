@@ -16,10 +16,14 @@ export const userSlice = createSlice({
       state.connected = true;
     },
     setUser: (state, { payload }) => {
-      state.email = payload[0];
-      state.firstName = payload[1];
-      state.lastName = payload[2];
-      state.userName = payload[3];
+      state.email = payload.email;
+      state.firstName = payload.firstName;
+      state.lastName = payload.lastName;
+      state.userName = payload.userName;
+      state.id = payload.id;
+    },
+    editUsername: (state, { payload }) => {
+      state.userName = payload;
     },
   },
 });
