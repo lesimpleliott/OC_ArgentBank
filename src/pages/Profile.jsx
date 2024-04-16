@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { color } from "../assets/styles/color";
 import Account from "../components/Account";
@@ -7,21 +8,24 @@ const Profile = () => {
   const user = useSelector((state) => state.user);
 
   return (
-    <ProfileStyle>
-      <div className="header">
-        {user.connected && (
-          <h1>
-            Welcome back
-            <br />
-            {user.firstName} {user.lastName}
-          </h1>
-        )}
-
-        <button className="edit-button">Edit Name</button>
-      </div>
-      <h2 className="sr-only">Accounts</h2>
-      <Account />
-    </ProfileStyle>
+    <>
+      {!user || !user.isConnected ? (
+        <Navigate to="/" />
+      ) : (
+        <ProfileStyle>
+          <div className="header">
+            <h1>
+              Welcome back
+              <br />
+              {user.firstName} {user.lastName}
+            </h1>
+            <button className="edit-button">Edit Name</button>
+          </div>
+          <h2 className="sr-only">Accounts</h2>
+          <Account />
+        </ProfileStyle>
+      )}
+    </>
   );
 };
 

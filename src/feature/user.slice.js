@@ -4,7 +4,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     token: null,
-    connected: null,
+    isConnected: null,
     email: null,
     firstName: null,
     lastName: null,
@@ -13,7 +13,7 @@ export const userSlice = createSlice({
   reducers: {
     setToken: (state, { payload }) => {
       state.token = payload;
-      state.connected = true;
+      state.isConnected = true;
     },
     setUser: (state, { payload }) => {
       state.email = payload.email;
@@ -25,8 +25,17 @@ export const userSlice = createSlice({
     editUsername: (state, { payload }) => {
       state.userName = payload;
     },
+    logout: (state) => {
+      state.token = null;
+      state.isConnected = false;
+      state.email = null;
+      state.firstName = null;
+      state.lastName = null;
+      state.userName = null;
+      state.id = null;
+    },
   },
 });
 
-export const { setToken, setUser } = userSlice.actions;
+export const { setToken, setUser, editUsername, logout } = userSlice.actions;
 export default userSlice.reducer;
