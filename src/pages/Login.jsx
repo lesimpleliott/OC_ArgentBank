@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -7,22 +8,35 @@ import { setToken, setUser } from "../feature/user.slice";
 const Login = () => {
   const dispatch = useDispatch();
   const naviguate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+  const rememberInput = document.getElementById("remember-me");
+
+  useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem("user"));
+    if (localUser) {
+      setEmail(localUser.email);
+      setPassword(localUser.password);
+      setRememberMe(localUser.rememberMe);
+    }
+  }, []);
 
   const fetchToken = async () => {
-    const username = document.getElementById("username");
-    const password = document.getElementById("password");
     const response = await fetch("http://localhost:3001/api/v1/user/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: username.value,
-        password: password.value,
+        email: usernameInput.value,
+        password: passwordInput.value,
       }),
     });
     const data = await response.json();
     return data.body.token;
   };
-
   const fetchUserDatas = async (token) => {
     const response = await fetch("http://localhost:3001/api/v1/user/profile", {
       method: "POST",
@@ -41,10 +55,21 @@ const Login = () => {
     // Fetch et dispatch pour le token
     const token = await fetchToken();
     dispatch(setToken(token));
-
     // Fecth et dispatch de la data USER
     const userDatas = await fetchUserDatas(token);
     dispatch(setUser(userDatas));
+
+    // Gestion session / Se souvenir de l'utilisateur
+    if (rememberMe) {
+      const localUser = {
+        email: usernameInput.value,
+        password: passwordInput.value,
+        rememberMe: rememberInput.checked,
+      };
+      localStorage.setItem("user", JSON.stringify(localUser));
+    } else {
+      localStorage.removeItem("user");
+    }
 
     // Redirection vers la page profil
     naviguate("/profile");
@@ -58,14 +83,36 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" />
+            <input
+              type="text"
+              id="username"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setRememberMe(false);
+                setPassword("");
+              }}
+            />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setRememberMe(false);
+              }}
+            />
           </div>
           <div className="input-remember">
-            <input type="checkbox" id="remember-me" />
+            <input
+              type="checkbox"
+              id="remember-me"
+              checked={rememberMe}
+              onChange={() => setRememberMe(!rememberMe)}
+            />
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button className="sign-in-button">Sign In</button>
