@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { color } from "../assets/styles/color";
 import Account from "../components/Account";
+import dataBankAccount from "../datas/dataBankAccount.json";
 import { editUsername } from "../feature/user.slice";
 
 const Profile = () => {
@@ -12,10 +13,9 @@ const Profile = () => {
   const [editUser, setEditUser] = useState(false);
   const [username, setUsername] = useState(user.userName);
 
-  const handleSubmit = async () => {
+  const handleUsernameSubmit = async () => {
     // modifier le state
     dispatch(editUsername(username));
-
     // modifier la data sur le serveur
     await fetch("http://localhost:3001/api/v1/user/profile", {
       method: "PUT",
@@ -93,7 +93,7 @@ const Profile = () => {
                       className="edit-button"
                       onClick={() => {
                         setEditUser(false);
-                        handleSubmit();
+                        handleUsernameSubmit();
                       }}
                     >
                       Save
@@ -109,8 +109,13 @@ const Profile = () => {
               </>
             )}
           </div>
+
           <h2 className="sr-only">Accounts</h2>
-          <Account />
+          {dataBankAccount
+            .filter((data) => data.email === user.email)[0]
+            .accounts.map((item, index) => (
+              <Account key={index} item={item} />
+            ))}
         </ProfileStyle>
       )}
     </>
