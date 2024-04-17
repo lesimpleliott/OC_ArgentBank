@@ -33,7 +33,7 @@ const Header = () => {
                 {user.userName}
               </NavLink>
               <NavLink
-                to="/"
+                to="/login"
                 className="main-nav-item"
                 onClick={() => dispatch(logout())}
               >
