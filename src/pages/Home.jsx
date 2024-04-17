@@ -29,7 +29,7 @@ const Home = () => {
 const HeroStyled = styled.div`
   height: 300px;
   position: relative;
-  background-image: url("./bank-tree.jpeg");
+  background-image: url("./bank-tree.webp");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
