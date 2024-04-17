@@ -56,54 +56,56 @@ const Profile = () => {
             ) : (
               <>
                 <h1>Edit Username</h1>
-                <section className="inputContainer">
-                  <div className="username">
-                    <label htmlFor="username">Username</label>
-                    <input
-                      id="username"
-                      type="text"
-                      value={username}
-                      onChange={(e) => {
-                        setUsername(e.target.value);
+                <form>
+                  <section className="inputContainer">
+                    <div className="username">
+                      <label htmlFor="username">Username</label>
+                      <input
+                        id="username"
+                        type="text"
+                        value={username}
+                        onChange={(e) => {
+                          setUsername(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div className="firstname">
+                      <label htmlFor="firstname">Firstname</label>
+                      <input
+                        id="firstname"
+                        type="text"
+                        value={user.firstName}
+                        disabled
+                      />
+                    </div>
+                    <div className="lastname">
+                      <label htmlFor="lastname">Lastname</label>
+                      <input
+                        id="lastname"
+                        type="text"
+                        value={user.lastName}
+                        disabled
+                      />
+                    </div>
+                  </section>
+                  <section className="buttonsContainer">
+                    <button
+                      className="edit-button"
+                      onClick={() => {
+                        setEditUser(false);
+                        handleSubmit();
                       }}
-                    />
-                  </div>
-                  <div className="firstname">
-                    <label htmlFor="firstname">Firstname</label>
-                    <input
-                      id="firstname"
-                      type="text"
-                      value={user.firstName}
-                      disabled
-                    />
-                  </div>
-                  <div className="lastname">
-                    <label htmlFor="lastname">Lastname</label>
-                    <input
-                      id="lastname"
-                      type="text"
-                      value={user.lastName}
-                      disabled
-                    />
-                  </div>
-                </section>
-                <section className="buttonsContainer">
-                  <button
-                    className="edit-button"
-                    onClick={() => {
-                      setEditUser(false);
-                      handleSubmit();
-                    }}
-                  >
-                    Save
-                  </button>
-                  <button
-                    className="edit-button cancel"
-                    onClick={() => setEditUser(false)}
-                  >
-                    Cancel
-                  </button>
-                </section>
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="edit-button cancel"
+                      onClick={() => setEditUser(false)}
+                    >
+                      Cancel
+                    </button>
+                  </section>
+                </form>
               </>
             )}
           </div>
