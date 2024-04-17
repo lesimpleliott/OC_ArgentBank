@@ -13,7 +13,6 @@ export const userSlice = createSlice({
   reducers: {
     setToken: (state, { payload }) => {
       state.token = payload;
-      state.isConnected = true;
     },
     setUser: (state, { payload }) => {
       state.email = payload.email;
@@ -21,6 +20,7 @@ export const userSlice = createSlice({
       state.lastName = payload.lastName;
       state.userName = payload.userName;
       state.id = payload.id;
+      state.isConnected = true;
     },
     editUsername: (state, { payload }) => {
       state.userName = payload;

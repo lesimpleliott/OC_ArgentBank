@@ -11,7 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-
+  const [error, setError] = useState("");
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
   const rememberInput = document.getElementById("remember-me");
@@ -26,40 +26,41 @@ const Login = () => {
   }, []);
 
   const fetchToken = async () => {
-    const response = await fetch("http://localhost:3001/api/v1/user/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: usernameInput.value,
-        password: passwordInput.value,
-      }),
-    });
-    const data = await response.json();
-    return data.body.token;
+    try {
+      const response = await fetch("http://localhost:3001/api/v1/user/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: usernameInput.value,
+          password: passwordInput.value,
+        }),
+      });
+      const data = await response.json();
+      return data.body.token;
+    } catch (error) {
+      setError("Password or Email is incorrect.");
+    }
   };
   const fetchUserDatas = async (token) => {
-    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/json",
-      },
-    });
-    const data = await response.json();
-    return data.body;
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/v1/user/profile",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      return data.body;
+    } catch (error) {
+      setError("An error occured, please try again later.");
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Fetch et dispatch pour le token
-    const token = await fetchToken();
-    dispatch(setToken(token));
-    // Fecth et dispatch de la data USER
-    const userDatas = await fetchUserDatas(token);
-    dispatch(setUser(userDatas));
-
-    // Gestion session / Se souvenir de l'utilisateur
+  const rememberUser = () => {
     if (rememberMe) {
       const localUser = {
         email: usernameInput.value,
@@ -70,9 +71,26 @@ const Login = () => {
     } else {
       localStorage.removeItem("user");
     }
+  };
 
-    // Redirection vers la page profil
-    naviguate("/profile");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      setError("Please fill in Email and Password fields.");
+    } else {
+      setError("");
+      // Fetch et dispatch pour le token
+      const token = await fetchToken();
+      dispatch(setToken(token));
+      // Fecth et dispatch de la data USER
+      const userDatas = await fetchUserDatas(token);
+      dispatch(setUser(userDatas));
+      // Gestion session / Se souvenir de l'utilisateur
+      rememberUser();
+      // Redirection vers la page profil
+      naviguate("/profile");
+    }
   };
 
   return (
@@ -82,12 +100,13 @@ const Login = () => {
         <h1>Sign In</h1>
         <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Email</label>
             <input
               type="text"
               id="username"
               value={email}
               onChange={(e) => {
+                setError("");
                 setEmail(e.target.value);
                 setRememberMe(false);
                 setPassword("");
@@ -101,6 +120,7 @@ const Login = () => {
               id="password"
               value={password}
               onChange={(e) => {
+                setError("");
                 setPassword(e.target.value);
                 setRememberMe(false);
               }}
@@ -116,6 +136,7 @@ const Login = () => {
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button className="sign-in-button">Sign In</button>
+          {error && <span className="errorDisplay">{error}</span>}
         </form>
       </section>
     </LoginStyle>
@@ -125,16 +146,8 @@ const Login = () => {
 const LoginStyle = styled.main`
   background: ${color.background};
 
-  .sign-in-button {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: #fff;
+  .sign-in-icon {
+    font-size: 5rem;
   }
 
   .sign-in-content {
@@ -144,18 +157,6 @@ const LoginStyle = styled.main`
     margin: 0 auto;
     margin-top: 3rem;
     padding: 2rem;
-  }
-
-  .sign-in-icon {
-    font-size: 5rem;
-  }
-
-  .input-remember {
-    display: flex;
-
-    label {
-      margin-left: 0.25rem;
-    }
   }
 
   .input-wrapper {
@@ -172,6 +173,34 @@ const LoginStyle = styled.main`
       padding: 5px;
       font-size: 1.2rem;
     }
+  }
+
+  .input-remember {
+    display: flex;
+
+    label {
+      margin-left: 0.25rem;
+    }
+  }
+
+  .sign-in-button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+  }
+
+  .errorDisplay {
+    display: block;
+    margin-top: 20px;
+    color: ${color.error};
+    font-style: italic;
+    font-weight: bold;
   }
 `;
 
