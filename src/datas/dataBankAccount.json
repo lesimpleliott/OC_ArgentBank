@@ -5,19 +5,19 @@
       {
         "accountType": "Checking",
         "accountNumber": "x8349",
-        "balance": "$2,082.79",
+        "balance": "2,082.79",
         "balanceDescription": "Available Balance"
       },
       {
         "accountType": "Savings",
         "accountNumber": "x6712",
-        "balance": "$10,928.42",
+        "balance": "10,928.42",
         "balanceDescription": "Available Balance"
       },
       {
         "accountType": "Credit Card",
         "accountNumber": "x8349",
-        "balance": "$184.30",
+        "balance": "184.30",
         "balanceDescription": "Current Balance"
       }
     ]
@@ -28,19 +28,19 @@
       {
         "accountType": "Checking",
         "accountNumber": "x1234",
-        "balance": "$3,728.50",
+        "balance": "3,728.50",
         "balanceDescription": "Available Balance"
       },
       {
         "accountType": "Savings",
         "accountNumber": "x5678",
-        "balance": "$15,492.63",
+        "balance": "15,492.63",
         "balanceDescription": "Available Balance"
       },
       {
         "accountType": "Credit Card",
         "accountNumber": "x1234",
-        "balance": "$235.10",
+        "balance": "235.10",
         "balanceDescription": "Current Balance"
       }
     ]

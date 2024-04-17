@@ -9,7 +9,7 @@ const Account = ({ item }) => {
         <h3 className="account-title">
           Argent Bank {item.accountType} ({item.accountNumber})
         </h3>
-        <p className="account-amount">{item.balance}</p>
+        <p className="account-amount">${item.balance}</p>
         <p className="account-amount-description">{item.balanceDescription}</p>
       </div>
       <div className="account-content-wrapper cta">
