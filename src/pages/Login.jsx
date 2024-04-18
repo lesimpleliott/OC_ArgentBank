@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
   const rememberInput = document.getElementById("remember-me");
@@ -115,16 +116,25 @@ const Login = () => {
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => {
-                setError("");
-                setPassword(e.target.value);
-                setRememberMe(false);
-              }}
-            />
+            <div className="passwordWrapper">
+              <input
+                type={passwordVisibility ? "password" : "text"}
+                id="password"
+                value={password}
+                onChange={(e) => {
+                  setError("");
+                  setPassword(e.target.value);
+                }}
+              />
+              <i
+                className={
+                  passwordVisibility
+                    ? "fa-solid fa-eye"
+                    : "fa-solid fa-eye-slash"
+                }
+                onClick={() => setPasswordVisibility(!passwordVisibility)}
+              ></i>
+            </div>
           </div>
           <div className="input-remember">
             <input
@@ -172,6 +182,27 @@ const LoginStyle = styled.main`
     input {
       padding: 5px;
       font-size: 1.2rem;
+    }
+  }
+
+  .passwordWrapper {
+    width: 100%;
+    display: flex;
+    position: relative;
+
+    input {
+      width: 100%;
+    }
+    .fa-solid {
+      color: lightgrey;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(-10px, -50%);
+      cursor: pointer;
+      &:hover {
+        color: grey;
+      }
     }
   }
 
