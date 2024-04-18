@@ -27,3 +27,8 @@ git clone https://github.com/OpenClassrooms-Student-Center/ArgentBank-website.gi
 # using SSH
 git clone git@github.com:OpenClassrooms-Student-Center/ArgentBank-website.git
 ```
+
+### Next Step // New backend Routes
+
+Use Swagger Editor to view / edit the swaggerV2.yml
+[text](https://editor-next.swagger.io/)
