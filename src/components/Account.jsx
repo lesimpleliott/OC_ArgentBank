@@ -3,14 +3,16 @@ import styled from "styled-components";
 import { color } from "../assets/styles/color";
 
 const Account = ({ item }) => {
+  const accountIdDisplay = item.accountID.slice(-4);
+
   return (
     <AccountStyle>
       <div className="account-content-wrapper">
         <h3 className="account-title">
-          Argent Bank {item.accountType} ({item.accountNumber})
+          Argent Bank {item.type} (x{accountIdDisplay})
         </h3>
         <p className="account-amount">${item.balance}</p>
-        <p className="account-amount-description">{item.balanceDescription}</p>
+        <p className="account-amount-description">{item.description}</p>
       </div>
       <div className="account-content-wrapper cta">
         <button className="transaction-button">View transactions</button>
@@ -21,10 +23,10 @@ const Account = ({ item }) => {
 
 Account.propTypes = {
   item: PropTypes.shape({
-    accountType: PropTypes.string.isRequired,
-    accountNumber: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    accountID: PropTypes.string.isRequired,
     balance: PropTypes.string.isRequired,
-    balanceDescription: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
   }).isRequired,
 };
 

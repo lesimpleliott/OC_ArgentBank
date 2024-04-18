@@ -3,22 +3,22 @@
     "email": "tony@stark.com",
     "accounts": [
       {
-        "accountType": "Checking",
-        "accountNumber": "x8349",
+        "accountID": "891043207561",
+        "type": "Checking",
         "balance": "2,082.79",
-        "balanceDescription": "Available Balance"
+        "description": "Available Balance"
       },
       {
-        "accountType": "Savings",
-        "accountNumber": "x6712",
+        "accountID": "542897631094",
+        "type": "Savings",
         "balance": "10,928.42",
-        "balanceDescription": "Available Balance"
+        "description": "Available Balance"
       },
       {
-        "accountType": "Credit Card",
-        "accountNumber": "x8349",
+        "accountID": "736109285432",
+        "type": "Credit Card",
         "balance": "184.30",
-        "balanceDescription": "Current Balance"
+        "description": "Current Balance"
       }
     ]
   },
@@ -26,23 +26,51 @@
     "email": "steve@rogers.com",
     "accounts": [
       {
-        "accountType": "Checking",
-        "accountNumber": "x1234",
+        "accountID": "215349870621",
+        "type": "Checking",
         "balance": "3,728.50",
-        "balanceDescription": "Available Balance"
+        "description": "Available Balance"
       },
       {
-        "accountType": "Savings",
-        "accountNumber": "x5678",
+        "accountID": "670923185432",
+        "type": "Savings",
         "balance": "15,492.63",
-        "balanceDescription": "Available Balance"
+        "description": "Available Balance"
       },
       {
-        "accountType": "Credit Card",
-        "accountNumber": "x1234",
+        "accountID": "459870126354",
+        "type": "Credit Card",
         "balance": "235.10",
-        "balanceDescription": "Current Balance"
+        "description": "Current Balance"
+      }
+    ]
+  },
+  {
+    "email": "eliott@elegarage.fr",
+    "accounts": [
+      {
+        "accountID": "215349870168",
+        "type": "Checking",
+        "balance": "3,728.50",
+        "description": "Available Balance"
+      },
+      {
+        "accountID": "670923182405",
+        "type": "Savings",
+        "balance": "15,492.63",
+        "description": "Available Balance"
+      },
+      {
+        "accountID": "459870121509",
+        "type": "Credit Card",
+        "balance": "235.10",
+        "description": "Current Balance"
       }
     ]
   }
 ]
+
+
+
+
+
