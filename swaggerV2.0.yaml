@@ -10,7 +10,6 @@ basePath: /api/v2
 schemes:
   - http
 paths:
-
   /user/login:
     post:
       tags:
@@ -107,7 +106,7 @@ paths:
         "500":
           description: Internal Server Error
 
-  /user/{userID}/accounts:
+  /accounts:
     post:
       security:
         - Bearer: []
@@ -116,11 +115,12 @@ paths:
       summary: Get User Accounts
       description: API for retrieving accounts associated with a user
       parameters:
-        - in: path
-          name: userID
-          description: ID of the user
+        - in: body
+          name: body
+          description: User ID Payload
           required: true
-          type: string
+          schema:
+            $ref: "#/definitions/userID"
       produces:
         - application/json
       responses:
@@ -133,7 +133,7 @@ paths:
         "500":
           description: Internal Server Error
 
-  /user/{accountID}/transactions:
+  /transactions:
     post:
       security:
         - Bearer: []
@@ -142,11 +142,12 @@ paths:
       summary: Get Account Transactions
       description: API for retrieving transactions associated with an account
       parameters:
-        - in: path
-          name: accountID
-          description: ID of the account
+        - in: body
+          name: body
+          description: Account ID Payload
           required: true
-          type: string
+          schema:
+            $ref: "#/definitions/accountID"
       produces:
         - application/json
       responses:
@@ -159,7 +160,7 @@ paths:
         "500":
           description: Internal Server Error
 
-  /transactions/{transactionID}:
+  /transaction:
     put:
       security:
         - Bearer: []
@@ -168,17 +169,12 @@ paths:
       summary: Update Transaction Details
       description: API for updating transaction details
       parameters:
-        - in: path
-          name: transactionID
-          description: ID of the transaction to update
-          required: true
-          type: string
         - in: body
           name: body
-          description: Updated transaction details
+          description: transaction ID and Updated transaction details
           required: true
           schema:
-            $ref: "#/definitions/UpdatedTransactionDetails"
+            $ref: "#/definitions/transactionID"
       produces:
         - application/json
       responses:
@@ -255,6 +251,12 @@ definitions:
       userName:
         type: string
 
+  userID:
+    type: object
+    properties:
+      userID:
+        type: string
+
   AccountsResponse:
     type: array
     items:
@@ -272,6 +274,12 @@ definitions:
         description:
           type: string
           description: Description of the account balance (e.g., Available Balance, Current Balance)
+
+  accountID:
+    type: object
+    properties:
+      accountID:
+        type: string
 
   TransactionsResponse:
     type: array
@@ -306,6 +314,16 @@ definitions:
             notes:
               type: string
               description: Additional notes about the transaction
+
+  transactionID:
+    type: object
+    properties:
+      transactionID:
+        type: string
+      category:
+        type: string
+      notes:
+        type: string
 
   UpdatedTransactionDetails:
     type: object
