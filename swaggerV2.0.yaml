@@ -324,13 +324,3 @@ definitions:
         type: string
       notes:
         type: string
-
-  UpdatedTransactionDetails:
-    type: object
-    properties:
-      category:
-        type: string
-        description: Updated category of the transaction
-      notes:
-        type: string
-        description: Updated notes for the transaction
